@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.yang.custom"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "RzJGqm4EHg6gkuu7cQNJv2",
+                GETUI_APP_KEY   : "9lzAf5wQLSAWGDRMG4Use",
+                GETUI_APP_SECRET: "J9ooATqwCr98LYfYGGchF4",
+                PACKAGE_NAME    : "com.yang.custom"
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    signingConfigs {
+        releaseConfig {
+            storeFile file('../acckeystore.jks')
+            storePassword '114129'
+            keyAlias 'key'
+            keyPassword '114129'
+        }
+
+        debugConfig {
+            storeFile file('../acckeystore.jks')
+            storePassword '114129'
+            keyAlias 'key'
+            keyPassword '114129'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    compile project(':library:push')
+}
